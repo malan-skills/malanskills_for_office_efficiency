@@ -1,0 +1,159 @@
+{
+  "name": "malanskills-for-office-efficiency",
+  "version": "0.1.0",
+  "updated": "2026-10-02",
+  "license": "MIT",
+  "default_branch": "main",
+  "language": ["zh-CN", "en"],
+  "spec": "https://agentskills.io/specification",
+  "summary_zh": "面向办公与组织效率提升的 Agent Skill 集合：招聘与人才评估、会议与协同、文档与数据处理、组织与团队效能。",
+  "summary_en": "A bilingual collection of Agent Skills that improves office and organizational productivity: recruiting and talent evaluation, meetings and collaboration, document and data processing, and team effectiveness.",
+  "registry_note": "Machine-readable skill registry. Mirrors the Skills Index table in README.md — keep both in sync when adding a skill. / 机器可读的 Skill 注册表，与 README.md 的 Skill 索引表保持同步，新增 Skill 时请同时更新两处。",
+  "install": {
+    "agent_skills_cli": "npx skills add <owner>/malanskills_for_office_efficiency --skill <skill-name>",
+    "user_scope": "~/.claude/skills/<skill-name>/",
+    "project_scope": "<project-root>/.claude/skills/<skill-name>/"
+  },
+  "categories": [
+    { "id": "talent-acquisition", "name_zh": "招聘与人才评估", "name_en": "Talent Acquisition" },
+    { "id": "meeting-collaboration", "name_zh": "会议与协同办公", "name_en": "Meetings & Collaboration" },
+    { "id": "document-processing", "name_zh": "文档与数据处理", "name_en": "Document & Data Processing" },
+    { "id": "team-effectiveness", "name_zh": "组织与团队效能", "name_en": "Team & Organizational Effectiveness" }
+  ],
+  "topics": [
+    "agent-skills",
+    "claude-skills",
+    "claude-code",
+    "codex",
+    "office-automation",
+    "office-productivity",
+    "workplace-productivity",
+    "productivity-tools",
+    "workflow-automation",
+    "resume-screening",
+    "recruiting",
+    "candidate-evaluation",
+    "meeting-minutes",
+    "report-writing",
+    "spreadsheet-analysis",
+    "document-generation",
+    "sop",
+    "onboarding",
+    "hr-automation",
+    "bilingual"
+  ],
+  "skills": [
+    {
+      "name": "resume-screening",
+      "path": "resume-screening",
+      "entry": "SKILL.md",
+      "readme": "resume-screening/README.md",
+      "version": "1.0.0",
+      "status": "stable",
+      "updated": "2026-10-02",
+      "category": "talent-acquisition",
+      "stage_zh": "招聘与人才评估",
+      "stage_en": "Talent acquisition",
+      "title_zh": "简历批量筛选与岗位匹配度评分",
+      "title_en": "Batch Resume Screening & Job-Fit Scoring",
+      "description_zh": "解析 PDF / Word / TXT / MD 简历，依据岗位评分模型从核心底层要求、岗位职责、岗位必备条件、岗位加分项、实践经验描述标准 5 个维度打分（各 20 分，总分 100 分），硬性淘汰规则优先执行，输出候选人评分汇总表格、是否通过初筛（>=80 分）与面试侧重点建议。",
+      "description_en": "Parse PDF/DOCX/TXT/MD resumes and score each candidate against a role scorecard across five dimensions (core fundamentals, responsibilities, must-have conditions, nice-to-haves, evidence-of-practice), 20 points each, with hard knock-out rules applied first. Outputs a ranked shortlist table, a pass/fail flag at 80/100, and interview focus areas.",
+      "keywords": [
+        "简历筛选",
+        "简历评估",
+        "简历打分",
+        "简历匹配度",
+        "简历与岗位匹配",
+        "批量简历评估",
+        "招聘初筛",
+        "候选人打分",
+        "人才筛选",
+        "简历排序",
+        "简历解析",
+        "求职筛选",
+        "面试建议",
+        "resume screening",
+        "resume scoring",
+        "resume evaluation",
+        "candidate evaluation",
+        "candidate shortlist",
+        "job fit score",
+        "resume ranking",
+        "recruiting",
+        "talent screening",
+        "hiring",
+        "hr automation",
+        "resume parser",
+        "interview focus"
+      ],
+      "inputs": ["简历附件（PDF / DOCX / TXT / MD）", "目标岗位名称"],
+      "outputs": ["候选人评分汇总表（Markdown）", "初筛通过统计", "面试侧重点建议"],
+      "data_sources": ["用户上传的简历附件", "references/jobs 下的岗位评分模型"],
+      "scripts": [
+        "resume-screening/scripts/extract_resume_text.py",
+        "resume-screening/scripts/calculate_match_score.py",
+        "resume-screening/scripts/summarize_batch.py"
+      ],
+      "tests": [],
+      "examples": ["resume-screening/README.md"],
+      "runtime": {
+        "language": "python",
+        "version": ">=3.9",
+        "third_party_deps": ["pypdf", "pdfplumber", "pdfminer.six", "pypdfium2", "python-docx"],
+        "network_required": false,
+        "note": "TXT/MD parsing is dependency-free; PDF and DOCX parsing degrade gracefully across multiple engines. No network calls. / 纯文本解析零依赖；PDF 与 Word 走多引擎容错；不发起网络请求。"
+      }
+    }
+  ],
+  "roadmap": [
+    {
+      "name": "job-description-builder",
+      "category": "talent-acquisition",
+      "title_zh": "岗位描述撰写与优化",
+      "title_en": "Job Description Builder",
+      "status": "planned"
+    },
+    {
+      "name": "interview-kit",
+      "category": "talent-acquisition",
+      "title_zh": "结构化面试题库与评估表",
+      "title_en": "Structured Interview Kit",
+      "status": "planned"
+    },
+    {
+      "name": "meeting-minutes",
+      "category": "meeting-collaboration",
+      "title_zh": "会议纪要与行动项提取",
+      "title_en": "Meeting Minutes & Action Items",
+      "status": "planned"
+    },
+    {
+      "name": "report-builder",
+      "category": "document-processing",
+      "title_zh": "周报 / 月报 / 复盘报告生成",
+      "title_en": "Report Builder",
+      "status": "planned"
+    },
+    {
+      "name": "spreadsheet-analyst",
+      "category": "document-processing",
+      "title_zh": "表格与数据清洗分析",
+      "title_en": "Spreadsheet Analyst",
+      "status": "planned"
+    },
+    {
+      "name": "sop-writer",
+      "category": "team-effectiveness",
+      "title_zh": "SOP 与流程沉淀",
+      "title_en": "SOP Writer",
+      "status": "planned"
+    },
+    {
+      "name": "onboarding-checklist",
+      "category": "team-effectiveness",
+      "title_zh": "新人入职引导清单",
+      "title_en": "Onboarding Checklist",
+      "status": "planned"
+    }
+  ]
+}

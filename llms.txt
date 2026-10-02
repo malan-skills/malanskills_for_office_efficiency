@@ -1,0 +1,33 @@
+# Malan Skills for Office Efficiency
+
+> 面向办公与组织效率提升的双语 Agent Skill 集合：招聘与人才评估、会议与协同、文档与数据处理、组织与团队效能。
+> A bilingual collection of Agent Skills for office and organizational productivity: talent acquisition, meetings and collaboration, document and data processing, team effectiveness.
+
+每个 Skill 是一个遵循 [Agent Skills 规范](https://agentskills.io/specification) 的独立目录（`SKILL.md` + `scripts/` + `references/`），可被 Claude Code、Codex、Cursor、Copilot 及各类 Skill 市场单独发现、单独安装。
+Every skill is a self-contained directory that follows the Agent Skills specification and can be discovered and installed individually.
+
+## Skills
+
+- [resume-screening](resume-screening/SKILL.md): 简历批量筛选与岗位匹配度评分 —— 解析 PDF/DOCX/TXT/MD 简历，按 5 个维度逐份打分，输出候选人排序表、初筛结论与面试侧重点。/ Batch resume screening: parse PDF/DOCX/TXT/MD resumes, score each candidate across 5 dimensions, and output a ranked shortlist with pass/fail and interview focus.
+
+## Categories
+
+- `talent-acquisition` 招聘与人才评估 / Talent acquisition
+- `meeting-collaboration` 会议与协同办公 / Meetings and collaboration
+- `document-processing` 文档与数据处理 / Document and data processing
+- `team-effectiveness` 组织与团队效能 / Team and organizational effectiveness
+
+## Conventions
+
+- Skill 目录名必须与其 `SKILL.md` frontmatter 中的 `name` 字段一致（kebab-case）。The directory name must match the `name` field in `SKILL.md` frontmatter.
+- `SKILL.md` 正文控制在 500 行 / 5k tokens 以内，细节下沉到 `references/`。Keep `SKILL.md` under 500 lines and push details into `references/`.
+- `description` 需同时包含中文与英文表述及触发词，因为它是 Agent 选中 Skill 的唯一依据。
+  The `description` must be bilingual and contain trigger keywords — it is the only signal an agent uses to select a skill.
+- `scripts/` 承担确定性计算，不允许模型手工编造数值。Deterministic computation belongs in `scripts/`; the model must not hand-compute numbers.
+- 新增 Skill 时同步更新 `skills.json`、本文件与 `README.md` 的索引表。When adding a skill, update `skills.json`, `llms.txt` and the index table in `README.md`.
+
+## Optional
+
+- [Full documentation (bilingual)](README.md)
+- [Machine-readable registry](skills.json)
+- [Per-skill usage example](resume-screening/README.md)
