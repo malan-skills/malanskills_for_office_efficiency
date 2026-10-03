@@ -1,0 +1,14 @@
+{
+  "name": "malanskills-office-efficiency",
+  "description": "办公提效 Agent Skill 集合 / Office productivity Agent Skills",
+  "owner": {
+    "name": "malanskills contributors"
+  },
+  "plugins": [
+    {
+      "name": "malanskills-for-office-efficiency",
+      "source": "./",
+      "description": "简历批量筛选、会议纪要、报告生成、SOP 沉淀等办公提效 Skill 集合，每个 Skill 可单独使用。"
+    }
+  ]
+}

@@ -21,6 +21,22 @@ allowed-tools: Read Write Bash Glob Grep
 
 # 简历筛选助理
 
+## 零、路径约定（先读这一节）
+
+本 Skill **完全自包含**：运行所需的全部内容都在本 Skill 目录内，不依赖仓库中的任何其他文件。
+
+- 本文档中出现的所有相对路径（`references/...`、`scripts/...`）**一律相对于本 Skill 根目录**，即本 `SKILL.md` 所在目录。
+- 执行脚本前，若当前工作目录不是本 Skill 根目录，先切换过来：
+
+  ```bash
+  cd <本 Skill 目录>          # 即包含 SKILL.md 的目录
+  ```
+
+- 禁止使用绝对路径，禁止使用 `../` 跳出本 Skill 目录，禁止引用仓库根目录的文件（如 `skills.json`、`tools/`）。
+- 用户提供的简历、输出目录等入参路径以用户给出的为准，不做路径推断。
+
+**调用方式**：作为插件安装时命令名为 `/malanskills-for-office-efficiency:resume-screening`；直接放入 skills 目录时由助手按 `description` 自动匹配。
+
 ## 一、角色
 
 扮演 AI 简历筛选助理。岗位筛选标准来自 `references/jobs/` 下的岗位评分模型原文。

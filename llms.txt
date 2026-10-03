@@ -3,12 +3,12 @@
 > 面向办公与组织效率提升的双语 Agent Skill 集合：招聘与人才评估、会议与协同、文档与数据处理、组织与团队效能。
 > A bilingual collection of Agent Skills for office and organizational productivity: talent acquisition, meetings and collaboration, document and data processing, team effectiveness.
 
-每个 Skill 是一个遵循 [Agent Skills 规范](https://agentskills.io/specification) 的独立目录（`SKILL.md` + `scripts/` + `references/`），可被 Claude Code、Codex、Cursor、Copilot 及各类 Skill 市场单独发现、单独安装。
-Every skill is a self-contained directory that follows the Agent Skills specification and can be discovered and installed individually.
+本仓库同时是一个 [Claude Code 插件](https://code.claude.com/docs/en/plugins) 与一个 [Agent Skills](https://agentskills.io/specification) 集合。每个 Skill 位于 `skills/<skill-name>/`，可被 Claude Code、Codex、Cursor、Copilot 及各类 Skill 市场单独发现、单独安装。
+This repository is both a Claude Code plugin and an Agent Skills collection. Each skill lives in `skills/<skill-name>/` and can be discovered and installed on its own.
 
 ## Skills
 
-- [resume-screening](resume-screening/SKILL.md): 简历批量筛选与岗位匹配度评分 —— 解析 PDF/DOCX/TXT/MD 简历，按 5 个维度逐份打分，输出候选人排序表、初筛结论与面试侧重点。/ Batch resume screening: parse PDF/DOCX/TXT/MD resumes, score each candidate across 5 dimensions, and output a ranked shortlist with pass/fail and interview focus.
+- [resume-screening](skills/resume-screening/SKILL.md): 简历批量筛选与岗位匹配度评分 —— 解析 PDF/DOCX/TXT/MD 简历，按 5 个维度逐份打分，输出候选人排序表、初筛结论与面试侧重点。/ Batch resume screening: parse PDF/DOCX/TXT/MD resumes, score each candidate across 5 dimensions, and output a ranked shortlist with pass/fail and interview focus.
 
 ## Categories
 
@@ -20,6 +20,8 @@ Every skill is a self-contained directory that follows the Agent Skills specific
 ## Conventions
 
 - Skill 目录名必须与其 `SKILL.md` frontmatter 中的 `name` 字段一致（kebab-case）。The directory name must match the `name` field in `SKILL.md` frontmatter.
+- 每个 Skill **完全自包含**：只引用自身目录内的文件，路径相对 Skill 根目录，不使用绝对路径，不跳出目录。
+  Every skill is self-contained: it references only files inside its own directory, uses skill-root-relative paths, no absolute paths and no escaping the directory.
 - `SKILL.md` 正文控制在 500 行 / 5k tokens 以内，细节下沉到 `references/`。Keep `SKILL.md` under 500 lines and push details into `references/`.
 - `description` 需同时包含中文与英文表述及触发词，因为它是 Agent 选中 Skill 的唯一依据。
   The `description` must be bilingual and contain trigger keywords — it is the only signal an agent uses to select a skill.
@@ -30,4 +32,5 @@ Every skill is a self-contained directory that follows the Agent Skills specific
 
 - [Full documentation (bilingual)](README.md)
 - [Machine-readable registry](skills.json)
-- [Per-skill usage example](resume-screening/README.md)
+- [Plugin manifest](.claude-plugin/plugin.json)
+- [Per-skill usage example](skills/resume-screening/README.md)

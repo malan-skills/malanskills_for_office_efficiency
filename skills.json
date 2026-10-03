@@ -1,16 +1,29 @@
 {
   "name": "malanskills-for-office-efficiency",
   "version": "0.1.0",
-  "updated": "2026-10-02",
+  "updated": "2026-10-03",
   "license": "MIT",
   "default_branch": "main",
   "language": ["zh-CN", "en"],
   "spec": "https://agentskills.io/specification",
   "summary_zh": "面向办公与组织效率提升的 Agent Skill 集合：招聘与人才评估、会议与协同、文档与数据处理、组织与团队效能。",
   "summary_en": "A bilingual collection of Agent Skills that improves office and organizational productivity: recruiting and talent evaluation, meetings and collaboration, document and data processing, and team effectiveness.",
+  "homepage": "https://github.com/malan-skills/malanskills_for_office_efficiency",
   "registry_note": "Machine-readable skill registry. Mirrors the Skills Index table in README.md — keep both in sync when adding a skill. / 机器可读的 Skill 注册表，与 README.md 的 Skill 索引表保持同步，新增 Skill 时请同时更新两处。",
+  "plugin": {
+    "manifest": ".claude-plugin/plugin.json",
+    "marketplace": ".claude-plugin/marketplace.json",
+    "plugin_name": "malanskills-for-office-efficiency",
+    "marketplace_name": "malanskills-office-efficiency",
+    "skills_dir": "skills",
+    "note": "Each skill lives under skills/<skill-name>/ and is self-contained: it references only files inside its own directory. / 每个 Skill 位于 skills/<skill-name>/ 且完全自包含，只引用自身目录内的文件。"
+  },
   "install": {
-    "agent_skills_cli": "npx skills add <owner>/malanskills_for_office_efficiency --skill <skill-name>",
+    "plugin_marketplace_add": "claude plugin marketplace add malan-skills/malanskills_for_office_efficiency",
+    "plugin_install": "claude plugin install malanskills-for-office-efficiency@malanskills-office-efficiency",
+    "plugin_local_dev": "claude --plugin-dir <path-to-this-repo>",
+    "agent_skills_cli": "npx skills add malan-skills/malanskills_for_office_efficiency --skill <skill-name>",
+    "git_clone": "git clone https://github.com/malan-skills/malanskills_for_office_efficiency.git",
     "user_scope": "~/.claude/skills/<skill-name>/",
     "project_scope": "<project-root>/.claude/skills/<skill-name>/"
   },
@@ -45,9 +58,9 @@
   "skills": [
     {
       "name": "resume-screening",
-      "path": "resume-screening",
+      "path": "skills/resume-screening",
       "entry": "SKILL.md",
-      "readme": "resume-screening/README.md",
+      "readme": "skills/resume-screening/README.md",
       "version": "1.0.0",
       "status": "stable",
       "updated": "2026-10-02",
@@ -90,12 +103,12 @@
       "outputs": ["候选人评分汇总表（Markdown）", "初筛通过统计", "面试侧重点建议"],
       "data_sources": ["用户上传的简历附件", "references/jobs 下的岗位评分模型"],
       "scripts": [
-        "resume-screening/scripts/extract_resume_text.py",
-        "resume-screening/scripts/calculate_match_score.py",
-        "resume-screening/scripts/summarize_batch.py"
+        "skills/resume-screening/scripts/extract_resume_text.py",
+        "skills/resume-screening/scripts/calculate_match_score.py",
+        "skills/resume-screening/scripts/summarize_batch.py"
       ],
       "tests": [],
-      "examples": ["resume-screening/README.md"],
+      "examples": ["skills/resume-screening/README.md"],
       "runtime": {
         "language": "python",
         "version": ">=3.9",

@@ -16,11 +16,15 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Validate repository structure and frontmatter
+      - name: Validate manifests, frontmatter and self-containment
         run: python3 tools/validate_skills.py
 
       - name: Validate skills.json is valid JSON
         run: python3 -c "import json;d=json.load(open('skills.json'));print(len(d['skills']),'skills registered')"
 
-      - name: Byte-compile all scripts
-        run: python3 -m compileall -q .
+      - name: Byte-compile all skill scripts
+        run: python3 -m compileall -q skills
+
+      - name: Validate plugin manifest (Claude Code CLI)
+        continue-on-error: true
+        run: claude plugin validate . --strict

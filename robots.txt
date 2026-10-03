@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://owner.github.io/malanskills_for_office_efficiency/sitemap.xml
+Sitemap: https://malan-skills.github.io/malanskills_for_office_efficiency/sitemap.xml

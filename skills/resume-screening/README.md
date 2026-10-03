@@ -11,26 +11,37 @@ Score every resume against a role scorecard, then output a ranked shortlist tabl
 | **入口 / Entry** | [`SKILL.md`](SKILL.md) |
 | **规范 / Spec** | [Agent Skills](https://agentskills.io/specification) |
 | **许可 / License** | MIT |
+| **自包含 / Self-contained** | 是，运行不依赖本仓库其他文件 |
 
 ## 目录结构 / Layout
 
 ```text
 resume-screening/
-├── SKILL.md                          # 唯一入口：角色、工作流、输出契约、约束
-├── references/
+├── SKILL.md                          # 唯一入口：路径约定、角色、工作流、输出契约、约束
+├── README.md                         # 本文件
+├── references/                       # 领域知识，按需读取
 │   ├── scoring-rubric.md             # 5 维度评分细则与硬性淘汰规则优先级
 │   └── jobs/
 │       ├── _index.md                 # 岗位索引（岗位名 → 文件路径 → 硬性规则）
 │       └── 高级后端开发工程师.md      # 岗位评分模型原文
-└── scripts/
+└── scripts/                          # 确定性计算，零框架依赖
     ├── extract_resume_text.py        # 简历文本提取（PDF / docx / txt / md）
     ├── calculate_match_score.py      # 分项分数 → 总分 / 初筛 / 面试建议
     └── summarize_batch.py            # 多份结果 JSON → Markdown 汇总表格
 ```
 
+本目录可整体复制到任意位置独立使用，所有路径均相对本目录。
+
 ## 安装 / Install
 
-将本目录整体放入以下任一位置 / Copy this directory into either scope:
+**作为 Claude Code 插件的一部分**
+
+```bash
+claude plugin marketplace add malan-skills/malanskills_for_office_efficiency
+claude plugin install malanskills-for-office-efficiency@malanskills-office-efficiency
+```
+
+**单独安装 / Install standalone**
 
 | 作用域 Scope | 路径 Path |
 |---|---|
@@ -38,10 +49,9 @@ resume-screening/
 | 项目级 Project | `<项目根>/.claude/skills/resume-screening/` |
 | CodeBuddy | `~/.codebuddy/skills/resume-screening/` |
 
-或整包安装 / Or install the whole collection:
-
 ```bash
-npx skills add <owner>/malanskills_for_office_efficiency --skill resume-screening
+# 从本仓库只取这一个 Skill
+npx skills add malan-skills/malanskills_for_office_efficiency --skill resume-screening
 ```
 
 ## 依赖 / Dependencies
@@ -63,6 +73,15 @@ pip install python-docx                              # Word 简历解析
 ```
 帮我评估这 5 份简历对「高级后端开发工程师」岗位的匹配度
 Screen these 5 resumes against the "Senior Backend Engineer" role and rank them.
+```
+
+命令行直接跑脚本时，先进入本目录：
+
+```bash
+cd resume-screening
+python3 scripts/extract_resume_text.py <附件目录> --batch -o <输出目录>
+python3 scripts/calculate_match_score.py score --name "张三" --scores "18,15,20,12,16"
+python3 scripts/summarize_batch.py --results <结果目录> --job "高级后端开发工程师"
 ```
 
 ## 评分模型 / Scoring Model

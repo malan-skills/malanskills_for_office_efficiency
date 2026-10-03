@@ -1,0 +1,29 @@
+{
+  "name": "malanskills-for-office-efficiency",
+  "displayName": "Malan Skills for Office Efficiency",
+  "version": "0.1.0",
+  "description": "面向办公与组织效率提升的 Agent Skill 集合：招聘与人才评估、会议与协同、文档与数据处理、组织与团队效能。 A bilingual collection of Agent Skills for office and organizational productivity: talent acquisition, meetings and collaboration, document and data processing, team effectiveness.",
+  "author": {
+    "name": "malanskills contributors"
+  },
+  "repository": "https://github.com/malan-skills/malanskills_for_office_efficiency",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "claude-skills",
+    "office-automation",
+    "office-productivity",
+    "workplace-productivity",
+    "workflow-automation",
+    "resume-screening",
+    "recruiting",
+    "candidate-evaluation",
+    "meeting-minutes",
+    "report-writing",
+    "document-generation",
+    "sop",
+    "onboarding",
+    "hr-automation",
+    "bilingual"
+  ]
+}
